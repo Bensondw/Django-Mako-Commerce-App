@@ -1,0 +1,56 @@
+<%! from catalog import models as cmod %>
+
+<%inherit file="app_base.htm" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+<form action="/homepage/contact/" method="POST"> <!-- action directs to where the logic will happen -->
+
+<!-- method Post (rather than Get) hides the data as it is sent from the user, doesn't put it into the url -->
+    <table> <!--lines up the form fields to look decent -->
+      <tr>
+        <td>Your name:</td> <!--Whatever you type here would just go in front of the form input field -->
+        <td><input type="text" name="yourname" /></td><!-- input types (just google these i guess) - they will mostly be type "text" for the form we are making --> 
+      </tr><tr>
+        <td>Your email:</td>
+        <td><input type="text" name="youremail" /></td>  <!-- name of the input area -->
+      </tr><tr>
+        <td>Message:</td>
+        <td><textarea name="yourmessage"></textarea></td>
+      </tr><tr colspan="2">
+        <td><input type="submit" value="Send Message"></td>
+      </tr>
+    </table>
+  </form>
+
+
+<%block name= "content"> 
+
+
+	%for product in products:
+		<div class="item"> 
+			<a href="/catalog/detail/${product.id}"> <!--THis will go to details.html-->
+				 <img class="img-thumbnail" src="${ STATIC_URL }catalog/media/product_images/${ product.get_image_filename() }" /> 	 
+			</a>
+			<p>
+				${product.name}
+				</br>
+				$${product.price}
+			</p>
+			
+		</div> <!-- flex container div  -->
+	%endfor 
+
+</%block>
+
+

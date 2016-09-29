@@ -1,0 +1,14 @@
+<%inherit file="/homepage/templates/base_ajax.htm" />
+
+
+
+<%block name="content">
+
+  <form id="areaform" action="/manager/events.edit_area/${ event.id }/${ area.id }/" method="POST">
+    <table>
+      ${ form.as_table() }
+    </table>
+    <input type="submit" class="btn btn-primary" value="Save"/>
+  </form>
+  
+</%block>

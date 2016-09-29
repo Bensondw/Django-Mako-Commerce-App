@@ -1,0 +1,21 @@
+<%inherit file="/homepage/templates/base.htm" />
+
+
+<%block name="main_menu">
+
+  <%
+    menu_items = [
+      [ 'My Account', 'homepage',  'index'   ],
+      [ 'Password',   'homepage',  'change'   ],
+      [ 'Catalog',    'catalog',   'index'   ],
+      [ 'Shopping Cart',    'catalog',   'cart'   ],
+    ]
+  %>
+
+  %for title, app, page in menu_items:
+    <li class="${ 'active' if request.dmp_router_app == app and request.dmp_router_page == page else '' }"><a href="/${ app }/${ page }/">${ title }</a></li>
+  %endfor
+  
+  
+
+</%block>

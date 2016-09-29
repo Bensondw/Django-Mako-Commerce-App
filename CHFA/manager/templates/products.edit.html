@@ -1,0 +1,17 @@
+<%inherit file="app_base.htm" />
+
+
+<%block name="title">Edit Product</%block>
+
+<%block name="content">
+
+  <h1 class="text-center">Edit Product</h1>
+
+  <form method="POST">
+    <table id="formtable">
+      ${ form.as_table() }
+    </table>
+    <input type="submit" class="btn btn-warning" value="Save"/>
+  </form>
+
+</%block>

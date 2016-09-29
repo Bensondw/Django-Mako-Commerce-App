@@ -1,0 +1,24 @@
+<%inherit file="base.htm" />
+
+
+<%block name="main_menu">
+
+  <%
+    menu_items = [
+      [ 'Home',       'homepage',  'index'   ],
+      [ 'Contact Us', 'homepage',  'contact' ],
+      [ 'About Us',   'homepage',  'about'   ],
+      [ 'Catalog',    'catalog',   'index'   ],
+      
+    ]
+  %>
+
+  %for title, app, page in menu_items:
+    <li class="${ 'active' if request.dmp_router_app == app and request.dmp_router_page == page else '' } pull-left"><a href="/${ app }/${ page }/">${ title }</a></li>
+  %endfor
+  <a href = "/catalog/cart/" id="shopping_cart_button" class = "btn btn-info glyphicon glyphicon-shopping-cart pull-right">
+    <span id="num_items"></span>
+  </a>
+  <!-- # above should bring you to the cart, to diplay the number you need to use some js -->
+
+</%block>

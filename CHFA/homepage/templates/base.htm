@@ -1,0 +1,136 @@
+## this is the skeleton of all pages on in this app - it defines the basic html tags
+
+## set up a StaticRenderer object to enable the CSS/JS automatic inclusion magic.
+<%! from django_mako_plus import static_files %>
+<%  static_renderer = static_files.StaticRenderer(self) %>
+
+<%! import datetime %>
+
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8">
+  <head>
+    
+    <title><%block name="title">CHF</%block></title>
+    
+    
+    ## add any site-wide scripts or CSS here; for example, jquery:
+    <script src="${ STATIC_URL }homepage/media/jquery-2.2.1.min.js"></script>
+    <script src="${ STATIC_URL }homepage/media/bootstrap3/js/bootstrap.min.js"></script>
+    <script src="${ STATIC_URL }homepage/media/jquery.loadmodal.js"></script>
+    <script src="${ STATIC_URL }homepage/media/jquery.form.js"></script>
+    <script src="${ STATIC_URL }homepage/media/jquery.datetimepicker.js"></script>
+    <link rel="stylesheet" href="${ STATIC_URL }homepage/media/jquery.datetimepicker.css" />
+  
+    <link rel="stylesheet" href="${ STATIC_URL }homepage/media/bootstrap3/css/bootstrap.min.css" />
+    ## render the css with the same name as this page
+    ${ static_renderer.get_template_css(request, context)  }
+
+  </head>
+  <body>
+      <header>
+        <div id="maintenance_message">
+          <%block name="maintenance_message">
+          </%block>
+        </div>
+        
+        
+      
+        <div id="main_menu">
+          <nav class="navbar navbar-default  notroundy">
+            <!-- Site Icon -->
+            <div class="pull-left">
+              <%block name="icon">
+                 
+              </%block>
+            </div><!-- pull-left -->
+
+            <!-- Login  -->
+            <div id="account_menu" class="pull-right">
+              %if not request.user.is_authenticated():
+                <a class="btn btn-success" href="/account/signup/">Sign Up</a>
+                <button id="loginbutton" type="button" class="btn btn-primary">Login</button>
+              %else:
+                <div class="dropdown">
+                  <button class="btn btn-default dropdown-toggle" type="button" id="account_menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Welcome, ${ request.user.first_name }!
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="account_menu">
+                    <li><a href="/account/index/">Edit Information</a></li>
+                    <li><a href="/account/change/">Change Password</a></li>
+                    <li><a href="/manager/users/">Manage the Site</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="/account/logout/">Logout</a></li>
+                  </ul>
+                </div>
+              %endif
+            </div>
+
+            <!-- Main Nav menu -->
+            <div id="main_title" class="classy">
+              <img class = "main_title_img" src="${ STATIC_URL }homepage/media/title.png">
+
+              
+
+
+
+            </div><!-- main_title -->
+
+
+
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul id="main_menu_nav" class="nav navbar-nav pull-right">
+                <%block name="main_menu">
+                </%block>
+              </ul><!-- nav -->
+            </div><!-- navbar-collapse -->
+
+            <div class="clearfix"></div>
+
+          </nav><!-- navbar -->
+        </div><!-- main_menu -->
+        
+        <div id="user_message">
+          <%block name="user_message">
+  ##          <div class="alert alert-success">
+  ##            Good Job, Joe! #1
+  ##          </div>
+          </%block>
+        </div>
+      
+      </header>
+  
+  
+    <div class="container-fluid">
+      <div class="row">
+        <div id="content_left" class="col-md-2">
+          <%block name="content_left">
+          
+          </%block>
+        </div><!-- left -->
+        <div id="content" class="col-md-8">
+          <%block name="content">
+          
+          </%block>
+        </div><!-- center content -->
+        <div id="content_right" class="col-md-2">
+          <%block name="content_right">
+          
+          </%block>
+        </div><!-- right -->
+      </div><!-- row -->
+    </div><!-- container -->
+    
+    
+    <footer>  
+      <%block name="footer">
+        Copyright &copy; Benson Weeks ${ datetime.date.today().year }
+      </%block>
+    </footer>
+    
+    ## render the JS with the same name as this page
+    ${ static_renderer.get_template_js(request, context)  }
+  </body>
+</html>

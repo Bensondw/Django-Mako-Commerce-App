@@ -1,0 +1,1 @@
+/* I remove the ajaxForm() script because users.password uses the CustomForm, which adds it automatically */

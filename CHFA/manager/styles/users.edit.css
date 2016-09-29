@@ -1,0 +1,22 @@
+form th {
+  vertical-align: top;
+  padding-top: 9px;
+}
+
+#id_groups, #id_user_permissions {
+  list-style-type: none;
+  padding: 6px 0 6px 12px;
+}
+
+#id_groups input,
+#id_user_permissions input {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  min-width: 0;
+}
+
+#id_groups label,
+#id_user_permissions label {
+  font-weight: normal;
+}

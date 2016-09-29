@@ -1,0 +1,70 @@
+<%inherit file="app_base.htm" />
+
+
+<%block name="title">Edit Event</%block>
+
+<%block name="content">
+
+  <h1 class="text-center">Edit Event</h1>
+
+  <!-- EVENT FORM -->
+  <form method="POST">
+    <table id="myform">
+      ${ form.as_table() }
+    </table>
+    <input type="submit" class="btn btn-warning" value="${ 'Save and Add Areas' if creating else 'Save' }"/>
+  </form>
+  
+  ## only show the areas if we are editing the event
+  %if event.id:
+
+    <!-- AREAS FOR THIS EVENT -->  
+    <h3 class="text-center">Areas in this Event</h3>
+    <div class="text-right">
+      <a class="btn btn-success edit_area_button" href="/manager/events.edit_area/${ event.id }/None/">New Area</a>
+    </div>
+    <table class="table table-striped">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Place Number</th>
+        <th>Actions</th>
+      </tr>
+      %for area in event.areas.order_by('name').all():
+        <tr>
+          <td>${ area.name }</td>
+          <td>${ area.description }</td>
+          <td>${ area.place_number }</td>
+          <td>
+            <a class="edit_area_button" href="/manager/events.edit_area/${ event.id }/${ area.id }/">Edit</a>
+            |
+            <a class="delete_area_button" href="/manager/events.delete_area/${ event.id }/${ area.id }/">Delete</a>
+          </td>
+        </tr>
+      %endfor
+    </table>
+
+
+  
+    <!-- MODAL FOR DELETE CONFIRMATION -->
+    <div class="modal fade" id="delete_modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Please Confirm</h4>
+          </div>
+          <div class="modal-body">
+            Delete this user?
+          </div>
+          <div class="modal-footer">
+            <a id="confirm_delete_button" href="" class="btn btn-danger">Delete</a>
+            <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  %endif
+
+</%block>

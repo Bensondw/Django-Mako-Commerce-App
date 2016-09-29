@@ -1,0 +1,78 @@
+<%inherit file="/homepage/templates/base.htm" />
+
+
+
+
+<%block name="main_menu">
+	<%
+		menu_items = [
+			[ 'Home',       'homepage',  'index'   ],
+			[ 'Contact Us', 'homepage',  'contact' ],
+			[ 'About Us',   'homepage',  'about'   ],
+			[ 'Catalog',    'catalog',   'index'   ],
+			
+		]
+	%>
+
+	%for title, app, page in menu_items:
+		<li class="${ 'active' if request.dmp_router_app == app and request.dmp_router_page == page else '' }">
+			<a href="/${ app }/${ page }/">
+				${ title }
+			</a>
+		</li>
+	%endfor
+		<a href = "/catalog/cart/" id="shopping_cart_button" class = "btn btn-info glyphicon glyphicon-shopping-cart pull-right">
+			<span id="num_items">3.14</span>
+		</a>
+	  <!-- # above should bring you to the cart, to dsiplay the number you need to use some js -->
+</%block>
+
+
+<%block name="content_left">
+	
+	<h3 class="text-center"><a href="/catalog/index/" class = "btn btn-success"> View All Products</a></h3>
+
+	<h3>Search</h3>
+	<div id="search_container">
+		<form action="/catalog/search/" method="GET">
+			<input type="text" name="q" class="sizing" />
+			<button type="submit" class="search_button"><span class="glyphicon glyphicon-triangle-right">
+		</form>
+	</div>
+
+	<h3>Categories</h3>
+	<ul id="categories_list">			
+
+		%for category in categories:
+			<li> <a href="/catalog/index/${ category.id }/">${category.name}</a> </li>
+		%endfor
+
+	</ul>
+	
+</%block>
+
+
+<!-- content right with last five will go here -->
+<%block name="content_right">
+	<h3> Recently Viewed: </h3>
+
+
+	<ul id="last_viewed">		 
+			%for product in request.shopping_cart.get_viewed_items():
+				<li class="viewed_item">
+					<a href = "/catalog/detail/${product.id}/">
+						<div>
+							<img class="img-thumbnail" src=" ${ STATIC_URL }catalog/media/product_images/${ product.get_image_filename() }"/>
+						</div>
+						<div>
+							${product.name}
+						</div>
+					</a>
+				</li>
+			%endfor	
+	</ul>
+
+
+
+
+</%block>

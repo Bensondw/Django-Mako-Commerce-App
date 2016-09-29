@@ -1,0 +1,15 @@
+<%inherit file="app_base.htm" />
+
+
+<%block name="title">Signup</%block>
+
+<%block name="content">
+
+  <form action="/account/signup/" method="POST">
+    <table id="myform">
+      ${ form.as_table() }
+    </table>
+    <input type="submit" class="btn btn-warning" value="Sign up now!"/>
+  </form>
+  
+</%block>

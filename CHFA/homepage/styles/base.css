@@ -1,0 +1,74 @@
+#maintenance_message {
+  background-color: #000000; 
+  color: #FF0000; 
+  font-size: 16px;
+  text-align: center;
+}
+
+#user_message {
+  position: fixed;
+  top: 6px;
+  right: 6px;
+}
+
+.notroundy {
+  border-radius:0px;
+}
+
+.classy {
+  text-align: center;
+}
+
+.magic {
+  width:100px;
+  padding-top: 20px;
+  padding-left: 20px;
+  /*margin-top: 20px;
+  margin-left: 20px;*/
+  border-radius:4px;
+}
+
+footer {
+  padding-top: 108px;
+  text-align: center;
+}
+
+#main_title {
+  margin: 18px 0 18px 160px;
+  font-size: 42px;
+}
+
+#main_menu_nav {
+  margin: 0 0 0 42px;
+}
+
+#account_menu {
+  margin: 24px;
+}
+
+/* Padding for forms */
+
+form td {
+  padding: 3px 8px;
+}
+
+.form-control {
+  min-width: 300px;
+}
+
+.custom_form_buttons {
+  text-align: center;
+}
+
+.main_title_img{
+ /* -webkit-filter: drop-shadow(5px 5px 5px #222);
+  filter: drop-shadow(5px 5px 5px #222);*/
+}
+
+.shadowed {
+    -webkit-filter: drop-shadow(12px 12px 25px rgba(0,0,0,0.5));
+    filter: url(#drop-shadow);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=12, OffY=12, Color='#444')";
+    filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=12, OffY=12, Color='#444')";
+}
+

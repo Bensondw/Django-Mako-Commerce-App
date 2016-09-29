@@ -1,0 +1,48 @@
+<%! from catalog import models as cmod %>
+
+<%inherit file="app_base.htm" />
+
+
+<%block name= "content"> 
+
+	<div>			
+		<img class="img-thumbnail lefty" src="${ STATIC_URL }catalog/media/product_images/${ product.get_image_filename() }" /> 	 
+			<a href="/catalog/detail.carousel/${product.id}/" class="btn btn-warning under" id="view_more_images">View all Images</a>
+
+		<div class="texty">	
+			<p>
+				${product.name}
+				</br>
+				$${product.price}
+			</p>
+
+			<h5>${product.description}</h5>
+
+			<p> ${product.category} <br> ${product.title} </p>
+
+			%if isinstance(product, cmod.BulkProduct):
+				<p class="pull-right">Left in Stock: ${ product.quantity } </p>
+			%endif
+
+
+			
+
+			
+
+
+
+
+
+		</div>	<!--text on the right  -->
+
+
+		
+	</div> <!--everything  -->
+
+	<div id="buyform" class="pull-right">
+				
+	</div>
+
+	
+</%block>
+

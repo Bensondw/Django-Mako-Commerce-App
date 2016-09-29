@@ -1,0 +1,58 @@
+<%inherit file="app_base.htm" />
+
+
+<%block name="title">Venues</%block>
+
+<%block name="content">
+
+  <p class="text-right"><a href="/manager/venues.create/" class="btn btn-primary">New Venue</a></p>
+
+  <table class="table table-striped">
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zip Code</th>
+      <th>Actions</th>
+    </tr>
+  
+    %for venue in venues:
+      <tr>
+        <td>${ venue.name }</td>
+        <td>${ venue.address }</td>
+        <td>${ venue.city }</td>
+        <td>${ venue.state }</td>
+        <td>${ venue.zip_code }</td>
+        <td>
+          <a href="/manager/venues.edit/${ venue.id }/">Edit</a>
+          |
+          <a href="/manager/venues.delete/${ venue.id }/" class="delete_button">Delete</a>
+        </td>
+      </tr>
+      
+      
+    %endfor  
+  </table>
+  
+  
+  <!-- Modal -->
+  <div class="modal fade" id="delete_modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Please Confirm</h4>
+        </div>
+        <div class="modal-body">
+          Delete this venue?
+        </div>
+        <div class="modal-footer">
+          <a id="confirm_delete_button" href="" class="btn btn-danger">Delete</a>
+          <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</%block>

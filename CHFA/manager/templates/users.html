@@ -1,0 +1,60 @@
+<%inherit file="app_base.htm" />
+
+
+<%block name="title">Current Users</%block>
+
+<%block name="content">
+
+  <p class="text-right"><a href="/manager/users.create/" class="btn btn-primary">New User</a></p>
+
+  <table class="table table-striped">
+    <tr>
+      <th>Username</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Groups</th>
+      <th>Actions</th>
+    </tr>
+  
+    %for user in users:
+      <tr>
+        <td>
+          ${ user.username }
+        </td>
+        <td>${ user.first_name }</td>
+        <td>${ user.last_name }</td>
+        <td>${ user.email }</td>
+        <td></td>
+        <td>
+          <a href="/manager/users.edit/${ user.id }/">Edit</a>
+          |
+          <a href="/manager/users.delete/${ user.id }/" class="delete_button">Delete</a>
+        </td>
+      </tr>
+      
+      
+    %endfor  
+  </table>
+  
+  
+  <!-- Modal -->
+  <div class="modal fade" id="delete_modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Please Confirm</h4>
+        </div>
+        <div class="modal-body">
+          Delete this user?
+        </div>
+        <div class="modal-footer">
+          <a id="confirm_delete_button" href="" class="btn btn-danger">Delete</a>
+          <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</%block>

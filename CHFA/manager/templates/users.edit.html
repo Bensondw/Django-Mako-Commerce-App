@@ -1,0 +1,16 @@
+<%inherit file="app_base.htm" />
+
+
+<%block name="title">Edit User</%block>
+
+<%block name="content">
+
+  <h1 class="text-center">Edit User</h1>
+
+  <div class="text-right">
+    <a id="change_password_button" href="/manager/users.password/${ user.id }/" class="btn btn-warning">Change Password</a>
+  </div>
+ 
+  ${ form }
+
+</%block>

@@ -1,0 +1,60 @@
+<%inherit file="app_base.htm" />
+
+
+<%block name="title">Events</%block>
+
+<%block name="content">
+
+  <p class="text-right"><a href="/manager/events.edit/" class="btn btn-primary">New Event</a></p>
+
+  <table class="table table-striped">
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Venue</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Actions</th>
+    </tr>
+  
+    %for event in events:
+      <tr>
+        <td>${ event.name }</td>
+        <td>${ event.description }</td>
+        <td>${ event.venue.name }</td>
+        <td>${ event.start_date.strftime('%Y-%m-%d') }</td>
+        <td>${ event.end_date.strftime('%Y-%m-%d') }</td>
+        <td>
+          <a href="/manager/events.edit/${ event.id }/">Edit</a>
+          |
+          <a href="/manager/events.delete/${ event.id }/" class="delete_button">Delete</a>
+        </td>
+      </tr>
+      
+      
+    %endfor  
+  </table>
+  
+  
+  <!-- Modal -->
+  <div class="modal fade" id="delete_modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Please Confirm</h4>
+        </div>
+        <div class="modal-body">
+          Delete this event?
+        </div>
+        <div class="modal-footer">
+          <a id="confirm_delete_button" href="" class="btn btn-danger">Delete</a>
+          <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+
+</%block>

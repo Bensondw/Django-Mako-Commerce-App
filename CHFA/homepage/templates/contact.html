@@ -1,0 +1,24 @@
+<%inherit file="app_base.htm" />
+
+<%block name="title">Contact Us</%block>
+
+<%block name="content">
+
+  <form action="/homepage/contact/" method="POST">
+    <table>
+      <tr>
+        <td>Your name:</td>
+        <td><input type="text" name="yourname" /></td>
+      </tr><tr>
+        <td>Your email:</td>
+        <td><input type="text" name="youremail" /></td>
+      </tr><tr>
+        <td>Message:</td>
+        <td><textarea name="yourmessage"></textarea></td>
+      </tr><tr colspan="2">
+        <td><input type="submit" value="Send Message"></td>
+      </tr>
+    </table>
+  </form>
+  
+</%block>

@@ -1,0 +1,28 @@
+.search_button{
+	width: 2em;
+	height: 2em;
+}
+
+.sizing {
+	width:140px;
+}
+
+#shopping_cart_button {	 
+	margin-top:7px;
+}
+
+#last_viewed{
+	list-style: none;
+	width:125px;
+	text-align:center;
+}
+
+.viewed_item {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	
+}
+
+#categories_list {
+	list-style: none;
+}

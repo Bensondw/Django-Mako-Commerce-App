@@ -1,0 +1,58 @@
+<%! from catalog import models as cmod %>
+
+<%inherit file="app_base.htm" />
+
+<%block name = "content">
+
+
+
+	<table class = "table table-striped">
+		<tr>
+			<th>Item</th>		
+			<!-- <th>Image</th> -->		
+			<th>Quantity</th>
+			<th>Price</th>
+			<th>Extended Price</th>
+			<th>Remove Item</th>		
+		</tr>
+
+		
+		%for item in cart:
+			<tr>
+				<td>
+					<a href="/catalog/detail/${item.product_id}/">					
+						${item.name}
+					</a>
+				</td>
+				<!-- 
+				<td>	
+					<a href="/catalog/detail/{item.id}/">
+						<img class="img-thumbnail shopping" src="{ STATIC_URL }catalog/media/product_images/{ item.get_image_filename() }" /> 	 
+					</a>
+				</td> -->
+
+				<td>${item.quantity}</td>
+				
+
+				<td> $ ${item.price}</td>
+				
+				<td> $ ${item.calc_extended()}</td>
+
+				<td>
+					<a href="/catalog/cart.remove/${item.product_id}" class="glyphicon glyphicon-trash"/>
+
+				</td>
+			</tr>
+		%endfor
+
+	</table>
+
+
+	%if not cart:
+		<h2>There are no items in your cart YET....(yet).......</h2>
+	%endif
+
+	<a href="/catalog/shipping/" class = "btn btn-primary pull-right">Proceed to checkout</a>
+	
+</%block>
+

@@ -1,0 +1,16 @@
+<%inherit file="/homepage/templates/base_ajax.htm" />
+
+
+<%block name="content">
+
+	
+
+	<!-- images will go here -->
+	%for image_obj in images:
+		<img class="pimage hide" src="${STATIC_URL}catalog/media/product_images/${image_obj.filename}"/>
+	%endfor
+
+	<button class="btn btn-warning pull-left previous">Previous</button>
+	<button class="btn btn-warning pull-right next">Next</button>
+
+</%block>

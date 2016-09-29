@@ -1,0 +1,66 @@
+<%! from catalog import models as cmod %>
+
+<%inherit file="app_base.htm" />
+
+
+<%block name="title">Current Users</%block>
+
+<%block name="content">
+
+  <p class="text-right"><a href="/manager/products.create/" class="btn btn-primary">Create Product</a></p>
+
+  <table class="table table-striped">
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Picture</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Actions</th>
+    </tr>
+    
+    %for product in products:
+      <tr>
+        <td>${ product.name }</td>
+        <td>${ product.title }</td>
+        <td>
+          <img class="img-thumbnail" src="${ STATIC_URL }catalog/media/product_images/${ product.get_image_filename() }" />
+        </td>
+        <td>$${ product.price } "and" ${ product.get_image_filename() }</td>
+        <td>
+          %if isinstance(product, cmod.BulkProduct):
+            <a class="refresh_quantity_button pull-right" href="/manager/products.get_quantity/${ product.id}/"><span class="glyphicon glyphicon-refresh"></span></a>
+            <!-- I'm hard coding the quantity here so I can demonstrate the update quantity button.  Normally we'd put ${ product.quantity } instead of the number 14. -->
+            <div class="text-center quantity">14</div>
+          %endif
+        </td>
+        <td>
+          <a href="/manager/products.edit/${ product.id }/">Edit</a>
+          |
+          <a href="/manager/products.delete/${ product.id }/" class="delete_button">Delete</a>
+        </td>
+      </tr>
+    %endfor  
+  </table>
+  
+  
+  <!-- Modal -->
+  <div class="modal fade" id="delete_modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Please Confirm</h4>
+        </div>
+        <div class="modal-body">
+          Delete this product?
+        </div>
+        <div class="modal-footer">
+          <a id="confirm_delete_button" href="" class="btn btn-danger">Delete</a>
+          <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</%block>
